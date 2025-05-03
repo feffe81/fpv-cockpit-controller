@@ -23,13 +23,13 @@ I use an P3022-V1-CW360 angular sensor and connected it via a voltage divider to
 
 ## 3D models
 ### Rudder pedals
-Box for Arduino based mixer unit: TBD
+[Box for Arduino based mixer unit](https://www.printables.com/model/1281219-case-for-arduino-nano-breakout-board)
 
 ### Flight stick
-I used this model as a flight stick and added a potentiometer in one of the holes to adjust the flaps: https://www.printables.com/model/202391-digital-arcade-flightstick-3-the-raptor-stl-versio
+I modified [this model](https://www.printables.com/model/202391-digital-arcade-flightstick-3-the-raptor-stl-versio) so that only 1 slot (also a bit bigger inside) for adding a potentiometer (to adjust the flaps, for example) is printed. You can find [my flight stick here](https://www.printables.com/model/1276597-flight-stick-for-real-fpv-rc-cockpit) 
 
 ### Thrust lever
-I used this model as a basis for my print so I could integrate the angular sensor: https://www.printables.com/model/903412-big-lever
+I used [this model](https://www.printables.com/model/903412-big-lever) as a basis for [my version of the thrust lever chassis](https://www.printables.com/model/1281225-thrust-lever-for-rc-fpv-cockpit) which fits with the angular sensor mentioned above.
  
 ## Software
 
