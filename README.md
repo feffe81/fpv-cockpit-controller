@@ -3,9 +3,13 @@ Soft and hardware for creating a functional cockpit used for controlling RC dron
 
 ## Overview
 
+![Rudder Pedals](https://github.com/feffe81/fpv-cockpit-controller/blob/More-docs/images/pedals.jpg)
 
-# Instructions
+![Pedal Mixer](https://github.com/feffe81/fpv-cockpit-controller/blob/More-docs/images/pedal_mixer_box.jpg)
 
+# DYI Instructions
+
+![Voltage Divider](https://github.com/feffe81/fpv-cockpit-controller/blob/More-docs/images/voltage_divider.jpg)
 
 # Part list
 
