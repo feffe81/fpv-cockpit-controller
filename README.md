@@ -32,15 +32,17 @@ I use an P3022-V1-CW360 angular sensor and connected it via a voltage divider to
 ### Flight stick
 I modified [this model](https://www.printables.com/model/202391-digital-arcade-flightstick-3-the-raptor-stl-versio) so that only 1 slot (also a bit bigger inside) for adding a potentiometer (to adjust the flaps, for example) is printed. You can find [my flight stick here](https://www.printables.com/model/1276597-flight-stick-for-real-fpv-rc-cockpit) 
 
+Furthermore you can use [this 3D model](https://www.printables.com/model/1287979-case-for-arduino-nano-33-ble-for-my-rc-fpv-flight) to fit the Arduino Nano 33 BLE of the [Head Tracker 2.1 project](https://headtracker.gitbook.io/head-tracker) into a case that can be mounted to the tube of the flight stick so that it detects the flight stick motions.
+
 ### Thrust lever
 I used [this model](https://www.printables.com/model/903412-big-lever) as a basis for [my version of the thrust lever chassis](https://www.printables.com/model/1281225-thrust-lever-for-rc-fpv-cockpit) which fits with the angular sensor mentioned above.
  
 ## Software
 
 ### Head Tracker
-This project I use without modifications in two Arduino Nano BLE 33 for head and flightstick movement as well as to ingest the analog values from the
+I use [the Head Tracker 2.1](https://headtracker.gitbook.io/head-tracker) software without modifications in two Arduino Nano BLE 33. One for head and one for flightstick movement as well as to ingest the analog values from the
 * Rudder Pedal
 * Thrust lever
 * Flap Switch
   
-https://headtracker.gitbook.io/head-tracker
+Furthermore I use the software in the pedal-mixer folder of this repository to mix the position of the two pedals into one analog output. The code also ingests the signal of the thrust lever so that it can be calibrated properly. After powering on you have 60 seconds time to push both ruder pedals as well as the thrust lever from min to max so that the min and max positions are trained and a normalized output signal from 0 to 5V is created. As the Arduino of the Head Tracker (see above) requires 3.3 Volts (5 will kill it!!!) the final setup requires a voltage divider circuit as described above in the "DIY Instructions" section. 
