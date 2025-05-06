@@ -9,6 +9,8 @@ Soft and hardware for creating a functional cockpit used for controlling RC dron
 
 # DYI Instructions
 
+![Schematics](https://github.com/feffe81/fpv-cockpit-controller/blob/More-docs/images/circuit_schematic.png)
+
 ![Voltage Divider](https://github.com/feffe81/fpv-cockpit-controller/blob/More-docs/images/voltage_divider.jpg)
 
 # Part list
