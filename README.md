@@ -1,17 +1,51 @@
 # FPV Cockpit
-Soft and hardware for creating a functional cockpit used for controlling RC drones/planes with a flight stick and rudder pedals as well as a thrust lever.
+Soft and hardware for creating a functional cockpit used for controlling RC drones/planes with a flight stick and rudder pedals as well as a thrust lever. The project is based on the brilliant [Head Tracker](https://headtracker.gitbook.io/head-tracker) project. Brilliant because the Head Tracker software offers a lot of flexibility and enables the use case I describe here without any software modification... just parametrization via the nice Windows UI it comes with.
 
-## Overview
+I use [Head Tracker](https://headtracker.gitbook.io/head-tracker) software in two Arduino Nano BLE 33. One for head tracking and one for capturing the flightstick movements as well as to ingest the analog values from the
+* Rudder Pedal
+* Thrust lever
+* Flap Switch
+* Trigger Switch
 
-![Rudder Pedals](https://github.com/feffe81/fpv-cockpit-controller/blob/More-docs/images/pedals.jpg)
+## Motivation
+I [started to fly FPV with my regular RC planes](https://www.youtube.com/watch?v=oKpAUHD5oCo) (not drones!) in 2024. First by mounting the equipment in my [Acromaster](https://www.printables.com/de/model/872705-fpv-pan-tilt-and-air-unit-holder-for-acromaster-) and then into the [Draco](https://www.printables.com/de/model/913318-fpv-frame-for-draco-) It is so fascinating that I was thinking about how to improve the immersive effect even further (the [Head Tracker unit](https://fpvdogfight.com/products/tally-ho-2-prebuilt-head-tracker) for the goggles combined with a [Pan tilt unit](https://fpvdogfight.com/products/motionsic-b-a-g-badass-gimbal) already was a great thing to feel like being in the plane). 
 
-![Pedal Mixer](https://github.com/feffe81/fpv-cockpit-controller/blob/More-docs/images/pedal_mixer_box.jpg)
+**So what was missing was a real flight stick and pedals to control the plane! :-)**
+
+## The result
+A pair of pedals to control the [rudder](https://en.wikipedia.org/wiki/Flight_control_surfaces#Rudder) of the plane:
+![Rudder Pedals](images/pedals.jpg)
+
+The red box contains an Arduino Nano which takes the analog signals from the pedals and subtracts them. So that if you press no pedals or both pedals fully, the plane rudders are centered. I know this is not 100% realistic but for controlling the plane with the feet it is fine and it is mechanically easy to make. Maybe I will change it later if the whole project has shown a good user experience.
+
+![Pedal Mixer](images/pedal_mixer_box.jpg)
+
+TODO: Thrust lever 
+
+TODO: Flight stick
 
 # DYI Instructions
+## Schematics
+Now that you are hooked I will give you some details about how to bulid it yourself. Here are the schematics of the circuit:
+![Schematics](images/circuit_schematic.png)
 
-![Schematics](https://github.com/feffe81/fpv-cockpit-controller/blob/More-docs/images/circuit_schematic.png)
+## Rudder pedal mixer
+Here is the assembly of the voltage divider that is soldered to the bottom right plug of the red box as shown above:
+![Voltage Divider](images/voltage_divider.jpg)
 
-![Voltage Divider](https://github.com/feffe81/fpv-cockpit-controller/blob/More-docs/images/voltage_divider.jpg)
+I use the software in the rudder-pedal-mixer folder of this repository to mix the position of the two pedals into one analog output. The code also ingests the signal of the thrust lever so that it can be calibrated properly. After powering on you have 60 seconds time to push both ruder pedals as well as the thrust lever from min to max so that the min and max positions are trained and a normalized output signal from 0 to 5V is created. As the Arduino of the Head Tracker (see above) requires 3.3 Volts (5 will kill it!!!) the final setup requires a voltage divider circuit as described above in the "DIY Instructions" section. You can find a simulation of the mixer here: [Tinkercad](https://www.tinkercad.com/things/2neiTo0rGoT-fpv-cockpit-pedal-simulator?sharecode=ey8n8Ov3wl2lUscSnCaDHknVoDXJ0ObJyboztXSCAUs)
+
+
+TODO: info about thrust lever 
+
+## Flight stick tracker
+The flight stick tracker is based on an [Arduino Nano BLE 33](https://store.arduino.cc/products/arduino-nano-33-ble-with-headers) according to the requirements of the [Head Tracker v2.1](https://headtracker.gitbook.io/head-tracker) project. It receives two types of signals:
+- The Bluetooth signal from the other head tracker on my goggles (based on the same hardware and software) to capture the head movement for adjusting the camera on the plane.
+- [4 Analog inputs](https://headtracker.gitbook.io/head-tracker/getting-started/wiring/analog-input) from the following sources:
+  - Rudder pedals 
+  - Thrust lever
+  - Trigger button of flight stick
+  - Potentiometer of flight stick (e.g. to adjust flaps)
 
 # Part list
 
@@ -39,12 +73,4 @@ Furthermore you can use [this 3D model](https://www.printables.com/model/1287979
 ### Thrust lever
 I used [this model](https://www.printables.com/model/903412-big-lever) as a basis for [my version of the thrust lever chassis](https://www.printables.com/model/1281225-thrust-lever-for-rc-fpv-cockpit) which fits with the angular sensor mentioned above.
  
-## Software
 
-### Head Tracker
-I use [the Head Tracker 2.1](https://headtracker.gitbook.io/head-tracker) software without modifications in two Arduino Nano BLE 33. One for head and one for flightstick movement as well as to ingest the analog values from the
-* Rudder Pedal
-* Thrust lever
-* Flap Switch
-  
-Furthermore I use the software in the pedal-mixer folder of this repository to mix the position of the two pedals into one analog output. The code also ingests the signal of the thrust lever so that it can be calibrated properly. After powering on you have 60 seconds time to push both ruder pedals as well as the thrust lever from min to max so that the min and max positions are trained and a normalized output signal from 0 to 5V is created. As the Arduino of the Head Tracker (see above) requires 3.3 Volts (5 will kill it!!!) the final setup requires a voltage divider circuit as described above in the "DIY Instructions" section. You can find a simulation of the mixer here: [Tinkercad](https://www.tinkercad.com/things/2neiTo0rGoT-fpv-cockpit-pedal-simulator?sharecode=ey8n8Ov3wl2lUscSnCaDHknVoDXJ0ObJyboztXSCAUs)
