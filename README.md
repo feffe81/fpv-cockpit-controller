@@ -23,6 +23,7 @@ The red box contains an Arduino Nano which takes the analog signals from the ped
 TODO: Thrust lever 
 
 TODO: Flight stick
+![Pedal Mixer](images/flight_stick_box1.jpg)
 
 # DYI Instructions
 ## Schematics
@@ -30,15 +31,18 @@ Now that you are hooked I will give you some details about how to bulid it yours
 ![Schematics](images/circuit_schematic.png)
 
 ## Rudder pedal mixer
-Here is the assembly of the voltage divider that is soldered to the bottom right plug of the red box as shown above:
+The software for the Arduino Nano of the red box (rudder peal mixer) is in the rudder-pedal-mixer folder of this repository. It mixes the position of the two pedals into one analog output. 
+
+You can find a simulation of the mixer software here: [Tinkercad](https://www.tinkercad.com/things/2neiTo0rGoT-fpv-cockpit-pedal-simulator?sharecode=ey8n8Ov3wl2lUscSnCaDHknVoDXJ0ObJyboztXSCAUs)
+
+The code also ingests the signal of the thrust lever (see below) so that it can be calibrated properly. After powering on you have 60 seconds time to push both ruder pedals as well as the thrust lever from min to max so that the min and max positions are trained and a normalized output signal from 0 to 5V is created. As the Arduino Nano 33 BLE of the Flight Stick (see below) requires 3.3 Volts (5 will kill it!!!) the setup requires a voltage divider circuit. Here is the assembly of the voltage divider that is soldered to the bottom right plug of the red box as shown above:
 ![Voltage Divider](images/voltage_divider.jpg)
 
-I use the software in the rudder-pedal-mixer folder of this repository to mix the position of the two pedals into one analog output. The code also ingests the signal of the thrust lever so that it can be calibrated properly. After powering on you have 60 seconds time to push both ruder pedals as well as the thrust lever from min to max so that the min and max positions are trained and a normalized output signal from 0 to 5V is created. As the Arduino of the Head Tracker (see above) requires 3.3 Volts (5 will kill it!!!) the final setup requires a voltage divider circuit as described above in the "DIY Instructions" section. You can find a simulation of the mixer here: [Tinkercad](https://www.tinkercad.com/things/2neiTo0rGoT-fpv-cockpit-pedal-simulator?sharecode=ey8n8Ov3wl2lUscSnCaDHknVoDXJ0ObJyboztXSCAUs)
-
-
+ 
+## Thrust lever
 TODO: info about thrust lever 
 
-## Flight stick tracker
+## Flight stick
 The flight stick tracker is based on an [Arduino Nano BLE 33](https://store.arduino.cc/products/arduino-nano-33-ble-with-headers) according to the requirements of the [Head Tracker v2.1](https://headtracker.gitbook.io/head-tracker) project. It receives two types of signals:
 - The Bluetooth signal from the other head tracker on my goggles (based on the same hardware and software) to capture the head movement for adjusting the camera on the plane.
 - [4 Analog inputs](https://headtracker.gitbook.io/head-tracker/getting-started/wiring/analog-input) from the following sources:
