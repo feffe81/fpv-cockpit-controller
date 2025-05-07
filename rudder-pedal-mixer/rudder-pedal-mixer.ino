@@ -83,6 +83,19 @@ void loop() {
   }
   else
   {
+    // now that the range is set (min and max values) we must ensure that there is no
+    // value read that is bigger or smaller (e.g. because we push the lever harder during flight)
+    // because that would cause an overflow / flickering output
+    // I know this can be coded shorter but this is better to understand
+    left = min(left_max, left);
+    left = max(left_min, left);
+
+    right = min(right_max, right);
+    right = max(right_min, right);
+
+    thrust = min(thrust_max, thrust);
+    thrust = max(thrust_min, thrust);
+    
     digitalWrite(LED_BUILTIN, HIGH);
   }
 
