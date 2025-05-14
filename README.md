@@ -1,4 +1,6 @@
 # FPV Cockpit
+![FPV Cockpit Controller](images/fpv-rc-cockpit-dryrun.jpg)
+
 Soft and hardware for creating a functional cockpit used for controlling RC drones/planes with a flight stick and rudder pedals as well as a thrust lever. The project is based on the brilliant [Head Tracker](https://headtracker.gitbook.io/head-tracker) project. Brilliant because the Head Tracker software offers a lot of flexibility and enables the use case I describe here without any software modification... just parametrization via the nice Windows UI it comes with.
 
 I use [Head Tracker](https://headtracker.gitbook.io/head-tracker) software in two Arduino Nano BLE 33. One for head tracking and one for capturing the flightstick movements as well as to ingest the analog values from the
