@@ -76,7 +76,7 @@ void loop() {
   thrust = analogRead(thrustLeverPin); 
 
   // You have 60 seconds time to push the pedals fully to calibrate the range 
-  if (millis() - startMillis > 60000) {
+  if (millis() - startMillis < 60000) {
     left_max = max(left_max, left);
     left_min = min(left_min, left);
 
@@ -120,5 +120,5 @@ void loop() {
   // Write output
   analogWrite(rudderOutPin, rudderOutput);
   analogWrite(thrustOutPin, thrustOutput);
-  delay(50);
+  delay(10);
 }
