@@ -38,7 +38,10 @@ float thrust_max = 0;
 int rudderOutput = 0;
 int thrustOutput = 0;
 
+unsigned long startMillis;
+
 void setup() {
+  startMillis = millis(); // Initial start time
   Serial.begin(9600);
   delay(1000);   
 
@@ -56,14 +59,18 @@ void setup() {
   thrust_max = thrust;              
 }
 
-// Norm left and right from 0 to 1024 based on min/max
-int normalize_input(float min, float max, int val) 
+int normalize_input(float calibrated_min, float calibrated_max, int input) 
 {
-  return (val - min) * 1024/(max-min);
+   // Limit value to calibrated range to avoid blow up of the calculation formular
+   input = min(calibrated_max, input); // if val is larger than calibrated max use the calibrated max
+   input = max(calibrated_min, input); // if val is smaller than calibrated min use the calibrated min
+
+   // Normalize left and right from 0 to 1023 based on calibrated min/max
+   return (input - calibrated_min) * 1023 / (calibrated_max - calibrated_min);
 }
 
 void loop() {
-  // Read analog values
+  // Read analog values (will result in integer values between 0 and 1023)
   left = analogRead(pedalLeftPin); 
   right = analogRead(pedalRightPin); 
   thrust = analogRead(thrustLeverPin); 
@@ -83,19 +90,6 @@ void loop() {
   }
   else
   {
-    // now that the range is set (min and max values) we must ensure that there is no
-    // value read that is bigger or smaller (e.g. because we push the lever harder during flight)
-    // because that would cause an overflow / flickering output
-    // I know this can be coded shorter but this is better to understand
-    left = min(left_max, left);
-    left = max(left_min, left);
-
-    right = min(right_max, right);
-    right = max(right_min, right);
-
-    thrust = min(thrust_max, thrust);
-    thrust = max(thrust_min, thrust);
-    
     digitalWrite(LED_BUILTIN, HIGH);
   }
 
@@ -114,12 +108,12 @@ void loop() {
   Serial.println(right);
 
   // Calculate difference and apply offset and scale to a range of 0-255
-  rudderOutput = (left-right+1023)/8;
+  rudderOutput = min(255, (left - right + 1023) / 8);
   Serial.print("Rudder Output: ");
   Serial.println(rudderOutput);
 
   // Calculate inverted output as the thurst lever angular sensor works rewards due to mounting position
-  thrustOutput = 255-thrust/4;
+  thrustOutput = min(255, 255 - thrust / 4);
   Serial.print("Thrust Output: ");
   Serial.println(thrustOutput);
 
