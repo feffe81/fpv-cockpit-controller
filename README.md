@@ -30,7 +30,7 @@ The red box contains an Arduino Nano which takes the analog signals from the ped
 
 TODO image of the stick
 
-# DYI Instructions
+# DYI Instructions ("Made for ground up" :-D)
 ## Schematics
 Now that you are hooked I will give you some details about how to bulid it yourself. Here are the schematics of the circuit:
 ![Schematics](images/circuit_schematic.png)
