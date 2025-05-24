@@ -41,6 +41,8 @@ TODO image of the stick
 Now that you are hooked I will give you some details about how to bulid it yourself. Here are the schematics of the circuit:
 ![Schematics](images/circuit_schematic.png)
 
+Please note that the "From Headtracker" input is optional. You can connect the headtracker via bluetooth or (if you experience problems with that) use a wired PPM signal.
+
 ## Rudder pedals
 The pedals are powered with 5V directly from the Arduino and provide an analog output ranging from 0 to 5 volts. It can be directly connected to the Arduino Nano (not Nano 33 BLE!) as described in the schematics above. To create the red mixer box for interfacing the pedals as well as the thrust lever you need an Arduino Nano. The software for it is contained in the [rudder-pedal-mixer](rudder-pedal-mixer) folder of this repository. It mixes the position of the two pedals into one analog output.  After powering on you have 60 seconds time to push both ruder pedals as well as the thrust lever from min to max so that the min and max positions are trained and a normalized output signal from 0 to 5V is created. By doing so, you co not have to change parameters of the flight stick Arduino in case the output voltages of the sensors change (for whatever reason, e.g. other sensor, temperature, age).
 
