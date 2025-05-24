@@ -12,7 +12,7 @@ I use [Head Tracker](https://headtracker.gitbook.io/head-tracker) software in tw
 ![FPV Cockpit Controller](images/fpv-rc-cockpit-dryrun.jpg)
 
 
-[![Trailer](images/youtube_trailer.png)](https://www.youtube.com/watch?v=uvvMWc_1iys)
+[![Trailer](images/youtube_trailer.png)](https://www.youtube.com/watch?v=XuPt7tg7L_0)
 
 
 ## Motivation
