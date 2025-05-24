@@ -1,9 +1,5 @@
 # FPV Cockpit
-![FPV Cockpit Controller](images/fpv-rc-cockpit-dryrun.jpg)
 
-**Status:**
-* First flight completed successfully
-* Bluetooth Connection between Head and Stick breaking up. Need to switch to wire (PPM)... 
 
 Soft and hardware for creating a functional cockpit used for controlling RC drones/planes with a flight stick and rudder pedals as well as a thrust lever. The project is based on the brilliant [Head Tracker](https://headtracker.gitbook.io/head-tracker) project. Brilliant because the Head Tracker software offers a lot of flexibility and enables the use case I describe here without any software modification... just parametrization via the nice Windows UI it comes with.
 
@@ -12,6 +8,12 @@ I use [Head Tracker](https://headtracker.gitbook.io/head-tracker) software in tw
 * Thrust lever
 * Flap Switch
 * Trigger Switch
+  
+![FPV Cockpit Controller](images/fpv-rc-cockpit-dryrun.jpg)
+
+
+[![Trailer](images/youtube_trailer.png)](https://www.youtube.com/watch?v=uvvMWc_1iys)
+
 
 ## Motivation
 I [started to fly FPV with my regular RC planes](https://www.youtube.com/watch?v=oKpAUHD5oCo) (not drones!) in 2024. First by mounting the equipment in my [Acromaster](https://www.printables.com/de/model/872705-fpv-pan-tilt-and-air-unit-holder-for-acromaster-) and then into the [Draco](https://www.printables.com/de/model/913318-fpv-frame-for-draco-) It is so fascinating that I was thinking about how to improve the immersive effect even further (the [Head Tracker unit](https://fpvdogfight.com/products/tally-ho-2-prebuilt-head-tracker) for the goggles combined with a [Pan tilt unit](https://fpvdogfight.com/products/motionsic-b-a-g-badass-gimbal) already was a great thing to feel like being in the plane). 
@@ -38,6 +40,8 @@ TODO image of the stick
 ## Schematics
 Now that you are hooked I will give you some details about how to bulid it yourself. Here are the schematics of the circuit:
 ![Schematics](images/circuit_schematic.png)
+
+Please note that the "From Headtracker" input is optional. You can connect the headtracker via bluetooth or (if you experience problems with that) use a wired PPM signal.
 
 ## Rudder pedals
 The pedals are powered with 5V directly from the Arduino and provide an analog output ranging from 0 to 5 volts. It can be directly connected to the Arduino Nano (not Nano 33 BLE!) as described in the schematics above. To create the red mixer box for interfacing the pedals as well as the thrust lever you need an Arduino Nano. The software for it is contained in the [rudder-pedal-mixer](rudder-pedal-mixer) folder of this repository. It mixes the position of the two pedals into one analog output.  After powering on you have 60 seconds time to push both ruder pedals as well as the thrust lever from min to max so that the min and max positions are trained and a normalized output signal from 0 to 5V is created. By doing so, you co not have to change parameters of the flight stick Arduino in case the output voltages of the sensors change (for whatever reason, e.g. other sensor, temperature, age).
