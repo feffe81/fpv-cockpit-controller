@@ -1,8 +1,5 @@
 # FPV Cockpit
-![FPV Cockpit Controller](images/fpv-rc-cockpit-dryrun.jpg)
 
-
-[![Trailer](images/youtube_trailer.png)](https://www.youtube.com/watch?v=uvvMWc_1iys)
 
 Soft and hardware for creating a functional cockpit used for controlling RC drones/planes with a flight stick and rudder pedals as well as a thrust lever. The project is based on the brilliant [Head Tracker](https://headtracker.gitbook.io/head-tracker) project. Brilliant because the Head Tracker software offers a lot of flexibility and enables the use case I describe here without any software modification... just parametrization via the nice Windows UI it comes with.
 
@@ -11,6 +8,12 @@ I use [Head Tracker](https://headtracker.gitbook.io/head-tracker) software in tw
 * Thrust lever
 * Flap Switch
 * Trigger Switch
+  
+![FPV Cockpit Controller](images/fpv-rc-cockpit-dryrun.jpg)
+
+
+[![Trailer](images/youtube_trailer.png)](https://www.youtube.com/watch?v=uvvMWc_1iys)
+
 
 ## Motivation
 I [started to fly FPV with my regular RC planes](https://www.youtube.com/watch?v=oKpAUHD5oCo) (not drones!) in 2024. First by mounting the equipment in my [Acromaster](https://www.printables.com/de/model/872705-fpv-pan-tilt-and-air-unit-holder-for-acromaster-) and then into the [Draco](https://www.printables.com/de/model/913318-fpv-frame-for-draco-) It is so fascinating that I was thinking about how to improve the immersive effect even further (the [Head Tracker unit](https://fpvdogfight.com/products/tally-ho-2-prebuilt-head-tracker) for the goggles combined with a [Pan tilt unit](https://fpvdogfight.com/products/motionsic-b-a-g-badass-gimbal) already was a great thing to feel like being in the plane). 
